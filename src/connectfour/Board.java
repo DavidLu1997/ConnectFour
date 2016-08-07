@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Copyright David Lu 2016
+// See LICENSE.txt for details
+
 package connectfour;
 
-/**
- *
- * @author david
- */
 public class Board {
     
     private Token[][] board;
@@ -67,6 +61,24 @@ public class Board {
         return true;
     }
     
+    public String toString() {
+        String str = "";
+        
+        for (int i = rows - 1; i >= 0; i--) {
+            for (int j = 0; j < columns; j++) {
+                switch (board[i][j]) {
+                    case RED: str += "R"; break;
+                    case YELLOW: str += "Y"; break;
+                    case NULL: str += " "; break;
+                }
+            }
+            
+            str += "\n";
+        }
+        
+        return str;
+    }
+    
     public Token winner() {
         
         for (int i = 0; i < rows; i++) {
@@ -83,6 +95,8 @@ public class Board {
                 for (int row = i + 1; row < rows && row < i + 4 && count < 4; row++) {
                     if (cur == board[row][j]) {
                         count++;
+                    } else {
+                        break;
                     }
                 }
                 if (count == 4) {
@@ -94,6 +108,8 @@ public class Board {
                 for (int row = i - 1; row >= 0 && row > i - 4 && count < 4; row--) {
                     if (cur == board[row][j]) {
                         count++;
+                    } else {
+                        break;
                     }
                 }
                 if (count == 4) {
@@ -105,6 +121,8 @@ public class Board {
                 for (int col = j + 1; col < columns && col < j + 4 && count < 4; col++) {
                     if (cur == board[i][col]) {
                         count++;
+                    } else {
+                        break;
                     }
                 }
                 if (count == 4) {
@@ -116,6 +134,8 @@ public class Board {
                 for (int col = j - 1; col >= 0 && col > j - 4 && count < 4; col--) {
                     if (cur == board[i][col]) {
                         count++;
+                    } else {
+                        break;
                     }
                 }
                 if (count == 4) {
@@ -127,6 +147,8 @@ public class Board {
                 for (int row = i + 1, col = j + 1; row < rows && row < i + 4 && col < columns && col < j + 4 && count < 4; row++, col++) {
                     if (cur == board[row][col]) {
                         count++;
+                    } else {
+                        break;
                     }
                 }
                 if (count == 4) {
@@ -138,6 +160,8 @@ public class Board {
                 for (int row = i - 1, col = j + 1; row >= 0 && row > i - 4 && col < columns && col < j + 4 && count < 4; row--, col++) {
                     if (cur == board[row][col]) {
                         count++;
+                    } else {
+                        break;
                     }
                 }
                 if (count == 4) {
